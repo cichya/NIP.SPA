@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  searchForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createSearchForm();
   }
 
+  createSearchForm() {
+    this.searchForm = this.fb.group({
+      searchData: ['']
+    });
+  }
+
+  search() {
+    console.log('Search...');
+  }
 }
