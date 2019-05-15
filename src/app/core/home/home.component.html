@@ -2,4 +2,9 @@
   NIP/KRS/REGON
 </p>
 
-<input class="form-control" type="text" />
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+  <input class="form-control" type="text" formControlName="searchData" />
+  <button type="submit">Search</button>
+</form>
+
+
