@@ -1,39 +1,46 @@
-<p>
-  NIP/KRS/REGON
-</p>
-
-<form [formGroup]="searchForm" (ngSubmit)="search()">
-  <input class="form-control" type="text" formControlName="searchData" />
-  <button type="submit">Search</button>
-</form>
-
-<form [formGroup]="displayForm">
-  <div class="container">
-    <div class="row">
-      Nazwa
-      <input type="text" class="form-control" formControlName="name" />
-    </div>
+<div class="mainDiv container mt-2">
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
     <div class="row">
       <div class="col-sm">
-        Ulica
-        <input type="text" class="form-control" formControlName="street" />
-      </div>
-      <div class="col-sm">
-        Nr
-        <input type="text" class="form-control" formControlName="streetNumber" />
+        <label for="searchInput">NIP/KRS/REGON</label>
+        <input id="searchInput" class="form-control" type="text" formControlName="searchData" />
       </div>
     </div>
     <div class="row">
-      <div class="col-sm">
-        Kod pocztowy
-        <input type="text" class="form-control" formControlName="postalCode" />
-      </div>
-      <div class="col-sm">
-        Miasto
-        <input type="text" class="form-control" formControlName="city" />
+      &nbsp;
+    </div>
+    <div class="row">
+      <div class="col-sm text-center">
+        <button class="btn btn-primary searchBtn" type="submit">Szukaj</button>
       </div>
     </div>
-  </div>
-</form>
-
-
+  </form>
+  <form [formGroup]="displayForm">
+    <div class="row">
+      <div class="col-sm">
+        <label for="nameText">Nazwa</label>
+        <input id="nameText" type="text" class="form-control" formControlName="name" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <label for="streetText">Ulica</label>
+        <input id="streetText" type="text" class="form-control" formControlName="street" />
+      </div>
+      <div class="col-sm">
+        <label for="streetNumberText">Nr</label>
+        <input id="streetNumberText" type="text" class="form-control" formControlName="streetNumber" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <label for="postalCodeText">Kod pocztowy</label>
+        <input id="postalCodeText" type="text" class="form-control" formControlName="postalCode" />
+      </div>
+      <div class="col-sm">
+        <label for="cityText">Miasto</label>
+        <input id="cityText" type="text" class="form-control" formControlName="city" />
+      </div>
+    </div>
+  </form>
+</div>
