@@ -1,3 +1,4 @@
+import { HomeService } from './home/home.service';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     HomeComponent
   ],
-  providers: []
+  providers: [
+    HomeService
+  ]
 })
 
 export class CoreModule { }
