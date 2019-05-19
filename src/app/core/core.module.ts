@@ -2,6 +2,7 @@ import { HomeService } from './home/home.service';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -9,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    CommonModule
   ],
   providers: [
     HomeService
