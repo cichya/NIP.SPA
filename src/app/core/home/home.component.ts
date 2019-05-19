@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   searchForm: FormGroup;
   displayForm: FormGroup;
 
+  wrongSearchDataFormat: boolean;
+
   constructor(private fb: FormBuilder, private homeService: HomeService) { }
 
   ngOnInit() {
@@ -27,6 +29,8 @@ export class HomeComponent implements OnInit {
     this.createDisplayForm();
 
     this.searchForm.get('searchData').setValue('');
+
+    this.wrongSearchDataFormat = false;
   }
 
   createSearchForm() {
@@ -48,9 +52,16 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
+    this.wrongSearchDataFormat = false;
+
     const searchParamValue: string = this.searchForm.get('searchData').value;
 
     const searchParamName: string = this.parseSearchParam(searchParamValue);
+
+    if (searchParamName === '') {
+      this.wrongSearchDataFormat = true;
+      return;
+    }
 
     this.homeService.searchCompany(searchParamName, searchParamValue).subscribe((data: Company) => {
       this.displayForm.get('name').setValue(data.name);
