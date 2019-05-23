@@ -5,3 +5,8 @@
 .searchBtn {
   min-width: 150px;
 }
+
+.noDataError {
+  font-weight: bold;
+  font-size: 16px;
+}

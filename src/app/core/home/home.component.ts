@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   displayForm: FormGroup;
 
   wrongSearchDataFormat: boolean;
+  dataNotFound: boolean;
 
   constructor(private fb: FormBuilder, private homeService: HomeService) { }
 
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
     this.searchForm.get('searchData').setValue('');
 
     this.wrongSearchDataFormat = false;
+    this.dataNotFound = false;
   }
 
   createSearchForm() {
@@ -53,6 +55,7 @@ export class HomeComponent implements OnInit {
 
   search() {
     this.wrongSearchDataFormat = false;
+    this.dataNotFound = false;
 
     const searchParamValue: string = this.searchForm.get('searchData').value;
 
@@ -63,12 +66,20 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.homeService.searchCompany(searchParamName, searchParamValue).subscribe((data: Company) => {
+    const searchParam: string = searchParamValue.split('-').join('').split('PL').join('');
+
+    this.homeService.searchCompany(searchParamName, searchParam).subscribe((data: Company) => {
       this.displayForm.get('name').setValue(data.name);
       this.displayForm.get('street').setValue(data.street);
       this.displayForm.get('streetNumber').setValue(data.streetNumber);
       this.displayForm.get('postalCode').setValue(data.postalCode);
       this.displayForm.get('city').setValue(data.city);
+    }, error => {
+      if (error.error.status === 404) {
+        this.dataNotFound = true;
+      }
+
+      console.log(error.error.status);
     });
   }
 
