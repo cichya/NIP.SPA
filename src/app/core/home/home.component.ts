@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
 
     if (searchParamName === '') {
       this.wrongSearchDataFormat = true;
+      this.clearDisplayForm();
       return;
     }
 
@@ -77,10 +78,19 @@ export class HomeComponent implements OnInit {
     }, error => {
       if (error.error.status === 404) {
         this.dataNotFound = true;
+        this.clearDisplayForm();
       }
 
       console.log(error.error.status);
     });
+  }
+
+  clearDisplayForm() {
+      this.displayForm.get('name').setValue('');
+      this.displayForm.get('street').setValue('');
+      this.displayForm.get('streetNumber').setValue('');
+      this.displayForm.get('postalCode').setValue('');
+      this.displayForm.get('city').setValue('');
   }
 
   parseSearchParam(searchParam: string): string {
