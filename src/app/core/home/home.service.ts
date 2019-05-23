@@ -1,23 +1,18 @@
+import { environment } from './../../../environments/environment';
 import { Company } from './../../models/company';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class HomeService {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  baseUrl: string = environment.apiUrl;
 
   searchCompany(paramName: string, paramValue: string): Observable<Company> {
-    const comp: Company = {
-      id: 1,
-      city: 'Poznan',
-      name: 'JanuszSoft',
-      postalCode: '12-123',
-      street: 'Glogowska',
-      streetNumber: '1'
-    };
-
-    return of(comp);
+    return this.http.get<Company>(this.baseUrl + 'company?' + paramName + '=' + paramValue);
   }
 
 }
